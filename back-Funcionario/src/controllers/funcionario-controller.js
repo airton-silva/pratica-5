@@ -15,21 +15,23 @@ exports.getByCargo = async (req, res) => {
 };
 
 exports.post = async (req, res) => {
-  // console.log(req);
+ 
+  console.log(req.file.path);
   res.json(
-    await funcionarioService.add(new Funcionario(req.body.name, req.body.cargo, 
-                                                 req.body.data_nasc, req.body.data_admissao,
-                                                 req.body.image,
-                                                ))
-  );
+      await funcionarioService.add(new Funcionario(req.body.name, req.body.cargo, 
+                                                  req.body.data_nasc, req.body.data_admissao,
+                                                  req.file.path,
+                                                  ))
+    );
 };
 
 exports.put = async (req, res) => {
+  console.log(req.file.path);
   res.json(
     await funcionarioService.update(
       req.params.id,
       new Funcionario(req.body.name, req.body.cargo, 
-        req.body.data_nasc, req.body.data_admissao, req.body.image))
+        req.body.data_nasc, req.body.data_admissao, req.file.path))
   );
 };
 
