@@ -25,6 +25,7 @@ exports.findByCargo = async (cargo) => {
 };
 
 exports.update = async (id, funcionario) => {
+  console.log(funcionario);
   const result = await pool.query(
     "UPDATE funcionarios SET name=$1, cargo=$2, data_nasc=$3, data_admissao=$4, image=$5 WHERE id=$6 RETURNING *;",
     [funcionario.name, funcionario.cargo, funcionario.data_nasc, funcionario.data_admissao, funcionario.image, id]
