@@ -21,7 +21,7 @@ const upload = multer({ storage });
 //fim
 
 const controller = require("../controllers/funcionario-controller");
-//console.log(upload);
+//onsole.log();
 router.get("/", controller.get);
 router.get("/search", controller.getByCargo);
 router.get("/:id", controller.getById);

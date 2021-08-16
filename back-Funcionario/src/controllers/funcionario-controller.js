@@ -15,12 +15,12 @@ exports.getByCargo = async (req, res) => {
 };
 
 exports.post = async (req, res) => {
- 
-  console.log(req.file.path);
+  let obj = JSON.parse(req.body.funcionario)
+  // console.log(obj);
+  // console.log(req.file);
   res.json(
-      await funcionarioService.add(new Funcionario(req.body.name, req.body.cargo, 
-                                                  req.body.data_nasc, req.body.data_admissao,
-                                                  req.file.path,
+      await funcionarioService.add(new Funcionario(obj.name, obj.cargo,obj.data_nasc, 
+                                                    obj.data_admissao,req.file.path,
                                                   ))
     );
 };

@@ -10,7 +10,9 @@ class FuncionarioDataService {
   }
 
   create(data) {
-    return http.post("/funcionarios", data);
+    return http.post("/funcionarios", data,{headers:{
+      "Content-Type": "multipart/form-data",
+    }});
   }
 
   update(id, data) {

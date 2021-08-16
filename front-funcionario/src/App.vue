@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
-        <Nav/>
-    </div>
-      
-    <router-view />
+    <div class="col-md-12">
+        <Nav/><br>  
+        <router-view />
+    </div>    
+    
 </template>
 
 <script>
