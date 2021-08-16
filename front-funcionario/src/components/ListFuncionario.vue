@@ -59,8 +59,8 @@
                     <td>{{funcionario.data_admissao}}</td>
                     <td><img :src="funcionario.image" :alt="funcionario.image"></td>
                     <td >                    
-                        <router-link :to="'/tutorials/' + funcionario.id" class="btn btn-outline-warning"><i class="far fa-edit"></i></router-link>
-                        <router-link :to="'/tutorials/' + funcionario.id" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></router-link>
+                        <router-link :to="'/detail-func/' + funcionario.id" class="btn btn-outline-warning"><i class="far fa-edit"></i></router-link>
+                        <router-link :to="'#' + funcionario.id" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></router-link>
                     </td>
                 </tr>
 
