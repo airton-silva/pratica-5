@@ -14,6 +14,10 @@ exports.getByCargo = async (req, res) => {
   res.json(await funcionarioService.getByCargo(req.query.cargo));
 };
 
+exports.getQty = (req, res) =>{
+  res.json(funcionarioService.getQty(req.query.qty));
+};
+
 exports.post = async (req, res) => {
   let obj = JSON.parse(req.body.funcionario)
   // console.log(obj);
@@ -26,12 +30,13 @@ exports.post = async (req, res) => {
 };
 
 exports.put = async (req, res) => {
-  console.log(req.file.path);
+  //console.log(req.file.path);
+  let obj = JSON.parse(req.body.funcionario)
   res.json(
     await funcionarioService.update(
       req.params.id,
-      new Funcionario(req.body.name, req.body.cargo, 
-        req.body.data_nasc, req.body.data_admissao, req.file.path))
+      new Funcionario(obj.name, obj.cargo,obj.data_nasc, 
+        obj.data_admissao,req.file.path,))
   );
 };
 

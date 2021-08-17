@@ -20,7 +20,16 @@ exports.findOne = async (id) => {
 };
 
 exports.findByCargo = async (cargo) => {
-  const result = await pool.query("SELECT * FROM funcionario WHERE cargo=$1", [cargo]);
+  const result = await pool.query("SELECT * FROM funcionarios WHERE cargo=$1;", [cargo]);
+  console.log(result.rows)
+  return result.rows;
+};
+
+exports.getByQty = async (qty) => {
+  //var qnt = parseInt(qty);
+  console.log(qty);
+  const result = await pool.query("SELECT * FROM funcionarios LIMIT $1;",[qty]);
+  console.log(result.rows)
   return result.rows;
 };
 

@@ -23,6 +23,7 @@ const upload = multer({ storage });
 const controller = require("../controllers/funcionario-controller");
 //onsole.log();
 router.get("/", controller.get);
+router.get("/qty", controller.getQty);
 router.get("/search", controller.getByCargo);
 router.get("/:id", controller.getById);
 router.post("/", upload.single("image"),controller.post);

@@ -35,7 +35,7 @@
                             <label for="exampleFormControlFile1">Upload de Imagem</label>
                             <input type="file" ref="image" class="form-control-file" name="image">
                         </div>
-                        <button type="submit" class="btn btn-primary offset-10" @click.prevent="addFuncionario()">Salvar</button>
+                        <button type="submit" class="btn btn-primary offset-10" @click.prevent="salvar()">Salvar</button>
                     </form>
 
                 </div>
@@ -62,7 +62,8 @@ export default {
                 data_admissao:'',
                 //image:'',
             }, 
-            file:'',           
+            file:'', 
+            operacao:'',          
             
         };
     },
@@ -75,7 +76,7 @@ export default {
                 cargo: this.funcionario.cargo,
                 data_nasc: this.funcionario.data_nasc,
                 data_admissao: this.funcionario.data_admissao,                
-                //image: this.$refs.image.files[0],
+                
             };
 
 
@@ -85,9 +86,6 @@ export default {
             let form = new FormData();
             form.append("funcionario", json);
             form.append("image", this.file );
-            
-            
-
 
             console.log(form.getAll("image"));
             console.log(form.getAll("funcionario"));
@@ -102,7 +100,72 @@ export default {
                 });
         },
 
+
+        getFuncionarioById(id) {
+            FuncionarioDataService.get(id)
+            .then(response => {
+                this.funcionario = response.data;
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        },
+
+        editarFuncionario(){
+            //console.log(this.funcionario)
+            var parametros = {
+                name: this.funcionario.name,
+                cargo: this.funcionario.cargo,
+                data_nasc: this.funcionario.data_nasc,
+                data_admissao: this.funcionario.data_admissao,                
+                
+            };
+
+
+            let json = JSON.stringify(parametros)
+            this.file = this.$refs.image.files[0];
+
+            let form = new FormData();
+            form.append("funcionario", json);
+            form.append("image", this.file );
+
+            console.log(form.getAll("image"));
+            console.log(form.getAll("funcionario"));
+
+            FuncionarioDataService.update(this.funcionario.id, form)
+                .then(response => {
+                console.log(response.data);
+                alert("Funcionario editado com sucesso");
+                this.$route.push("/");
+                })
+                .catch(e => {
+                console.log(e);
+                });
+        },
+
+        salvar(){
+            this.operacao = this.$route.name;
+            
+            if(this.operacao ==="funcionario"){
+                this.addFuncionario();
+            }
+            if(this.operacao ==="editar"){
+                this.editarFuncionario();
+            }
+        }
+
+
+
     },
+
+
+    mounted() {
+        this.message = '';
+        //alert(this.$route.name);
+        this.getFuncionarioById(this.$route.params.id);
+       
+    }
 
 }
 </script>

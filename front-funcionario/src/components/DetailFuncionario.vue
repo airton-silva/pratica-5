@@ -25,10 +25,10 @@
                         
                     </ul>
                         <span class="offset-9">
-                            <router-link :to="'#' + funcionario.id" class="btn btn-outline-warning"><i class="far fa-edit"></i> Editar </router-link>
+                            <router-link :to="'/funcionario/edit/' + funcionario.id" class="btn btn-outline-warning"><i class="far fa-edit"></i> Editar </router-link>
                         </span>
                         <span style="padding:5px;">
-                            <router-link :to="'#' + funcionario.id" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Deletar </router-link>
+                            <button  @click="deleteFuncionario(funcionario.id)" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Deletar </button>
                         </span>
                 </div>
             </div>
@@ -63,6 +63,20 @@ export default {
                 console.log(e);
             });
         },
+
+        deleteFuncionario(id) {
+            
+            FuncionarioDataService.delete(id)
+                .then(response => {
+                console.log(response.data);
+                alert("Usuario removido com Sucesso");
+                this.$router.push({ name: "home" });
+                })
+                .catch(e => {
+                console.log(e);
+                });
+    
+        }
 
     },
 

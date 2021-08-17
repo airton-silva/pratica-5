@@ -16,7 +16,9 @@ class FuncionarioDataService {
   }
 
   update(id, data) {
-    return http.put(`/funcionarios/${id}`, data);
+    return http.put(`/funcionarios/${id}`, data,{headers:{
+      "Content-Type": "multipart/form-data",
+    }});
   }
 
   delete(id) {
@@ -27,8 +29,11 @@ class FuncionarioDataService {
     return http.delete(`/funcionarios`);
   }
 
-  findByCargo(cargo) {
-    return http.get(`/funcionarios?title=${cargo}`);
+  getByCargo(cargo) {
+    return http.get(`/funcionarios/search?cargo=${cargo}`);
+  }
+  getByQty(qty) {
+    return http.get(`/funcionarios/qty?qty=${qty}`);
   }
 }
 

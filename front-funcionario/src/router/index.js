@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
  import Detail from '../views/Detail.vue'
  import Funcionario from '../views/Funcionario.vue'
-// import User from '../views/User.vue'
+ import EditarFuncionario from '../views/EditarFuncionario.vue'
 // import Post from '../views/Post.vue'
 // import Comments from '../components/Comments.vue'
 
@@ -27,6 +27,13 @@ const routes = [
     path: '/funcionario',
     name: 'funcionario',
     component: Funcionario,
+    
+  },
+
+  {
+    path: '/funcionario/edit/:id',
+    name: 'editar',
+    component: EditarFuncionario,
     
   },
 

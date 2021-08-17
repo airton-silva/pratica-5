@@ -1,6 +1,7 @@
 const funcionarioRepo = require("../repositories/funcionario-repo");
 
 class FuncionarioService {
+
   add(funcionario) {
     return funcionarioRepo.save(funcionario);
   }
@@ -14,7 +15,11 @@ class FuncionarioService {
   }
 
   getByCargo(cargo) {
-    return funcionarioRepo.findByName(cargo);
+    return funcionarioRepo.findByCargo(cargo);
+  }
+
+  getQty(qty){
+    return funcionarioRepo.getByQty(qty)
   }
 
   update(id, funcionario) {

@@ -10,7 +10,7 @@
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                         v-model="search" />
                         <span class="input-group-text border-0" id="search-addon" >
-                        <i class="fas fa-search"></i><a href="#" @click="getByModel()">  buscar</a>
+                        <i class="fas fa-search"></i><a href="#" @click="getByCargo()">  buscar</a>
                         </span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <td>{{funcionario.cargo}}</td>
                     <td>{{funcionario.data_nasc}}</td>
                     <td>{{funcionario.data_admissao}}</td>
-                    <td><img :src="funcionario.image" :alt="funcionario.image"></td>
+                    <td ><img v-if="funcionario.image" :src="'http://localhost:3000/'+ funcionario.image" alt="funcionario.image"></td>
                     <td >                    
                         <router-link :to="'/detail-func/' + funcionario.id" class="btn btn-outline-info"><i class="fas fa-search"></i> Detalhes</router-link>
                     </td>
@@ -100,6 +100,31 @@ export default {
           console.log(e);
         });
     },
+
+    getByQty() {
+        //alert(this.selected)
+        FuncionarioDataService.getByQty(this.selected)
+           .then(response => {
+            this.funcionarios = response.data;
+            console.log(response.data);
+            })
+            .catch(e => {
+            console.log(e);
+            });
+
+     },
+
+     getByCargo() {
+         //alert(this.search)
+        FuncionarioDataService.getByCargo(this.search)
+           .then(response => {
+            this.funcionarios = response.data;
+            console.log(response.data);
+            })
+            .catch(e => {
+            console.log(e);
+            });         
+     }
   }
 }
 </script>
