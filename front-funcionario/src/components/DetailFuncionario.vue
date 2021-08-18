@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <ul class="text-left">
                         <li>
-                            <span><img :src="funcionario.image" alt="">{{funcionario.image}}</span>
+                            <span><img :src="'localhost:3000'+funcionario.image" alt=""></span>
                         </li>
                         <li>
                             <span><strong>Nome : </strong>{{funcionario.name}}</span>
@@ -57,6 +57,7 @@ export default {
             FuncionarioDataService.get(id)
             .then(response => {
                 this.funcionario = response.data;
+                this.quebraString(this.funcionario);
                 console.log(response.data);
             })
             .catch(e => {
@@ -76,6 +77,11 @@ export default {
                 console.log(e);
                 });
     
+        },
+
+        quebraString(str) {
+             var q = str.image.replace('public/', '/');
+             this.funcionario.image = q;
         }
 
     },
@@ -84,6 +90,7 @@ export default {
         mounted() {
             this.message = '';
             this.getFuncionarioById(this.$route.params.id);
+            //this.quebraString();
             //this.getTutorial(this.$route.params.id);
         }
 

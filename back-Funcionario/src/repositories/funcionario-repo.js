@@ -21,7 +21,6 @@ exports.findOne = async (id) => {
 
 exports.findByCargo = async (cargo) => {
   const result = await pool.query("SELECT * FROM funcionarios WHERE cargo=$1;", [cargo]);
-  console.log(result.rows)
   return result.rows;
 };
 

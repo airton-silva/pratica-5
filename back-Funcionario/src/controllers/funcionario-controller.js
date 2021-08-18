@@ -14,8 +14,8 @@ exports.getByCargo = async (req, res) => {
   res.json(await funcionarioService.getByCargo(req.query.cargo));
 };
 
-exports.getQty = (req, res) =>{
-  res.json(funcionarioService.getQty(req.query.qty));
+exports.getQty = async (req, res) =>{
+  res.json(await funcionarioService.getQty(req.query.qty));
 };
 
 exports.post = async (req, res) => {
