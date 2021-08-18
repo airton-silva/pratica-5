@@ -124,7 +124,12 @@ export default {
             .catch(e => {
             console.log(e);
             });         
-     }
+     }, 
+
+    //  quebraString(str) {
+    //      var q = str.split('/', 1);
+    //      alert(q)
+    //  }
   }
 }
 </script>
